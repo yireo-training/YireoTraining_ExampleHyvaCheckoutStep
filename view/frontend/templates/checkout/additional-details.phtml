@@ -1,0 +1,33 @@
+<?php
+declare(strict_types=1);
+
+use YireoTraining\ExampleHyvaCheckoutStep\Magewire\Checkout\AdditionalDetails;
+
+/** @var $magewire AdditionalDetails */
+?>
+<div class="grid grid-cols-12 gap-x-4">
+    <div class="col-span-12 field-wrapper field-type-text field field-reserved field-diet md:col-span-12"
+         wire:key="field-wrapper-additional-diet">
+        <div class="w-full font-medium text-gray-700 required">
+            <label for="additional-diet" class="label label-diet">
+                <span><?= __('Diet') ?></span>
+            </label>
+            <div class="flex items-center gap-4">
+                <textarea class="block w-full form-input grow renderer-text diet"
+                          wire:model="diet"><?= $magewire->diet ?></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="col-span-12 field-wrapper field-type-text field field-reserved field-comment md:col-span-12"
+         wire:key="field-wrapper-additional-comment">
+        <div class="w-full font-medium text-gray-700 required">
+            <label for="additional-comment" class="label label-comment">
+                <span><?= __('Comment') ?></span>
+            </label>
+            <div class="flex items-center gap-4">
+                <textarea class="block w-full form-input grow renderer-text comment"
+                          wire:model="comment"><?= $magewire->comment ?></textarea>
+            </div>
+        </div>
+    </div>
+</div>

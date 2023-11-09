@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Hyva_Checkout:etc/hyva_checkout.xsd"
+>
+    <checkout name="examplestep"
+              label="Yireo Example with Additional Step"
+              layout="2columns"
+              parent="default"
+    >
+        <step name="additional"
+              label="Additional details"
+              route="additional"
+              layout="2columns"
+              before="payment"
+              after="shipping"
+        >
+        </step>
+    </checkout>
+</config>

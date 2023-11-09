@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="hyva.checkout.components">
+            <container name="checkout.additional-details.section" htmlTag="section" htmlId="additional-details">
+                <block name="checkout.additional-details.title"
+                       template="Hyva_Checkout::section/title.phtml"
+                       before="-"
+                >
+                    <action method="setTitle">
+                        <argument name="title" translate="true" xsi:type="string">Additional Details</argument>
+                    </action>
+                </block>
+
+
+                <block name="checkout.additional-details"
+                       template="YireoTraining_ExampleHyvaCheckoutStep::checkout/additional-details.phtml"
+                >
+                    <arguments>
+                        <argument name="magewire" xsi:type="object">
+                            \YireoTraining\ExampleHyvaCheckoutStep\Magewire\Checkout\AdditionalDetails
+                        </argument>
+                    </arguments>
+                </block>
+            </container>
+
+            <container name="checkout.additional-details.before">
+                <block name="component-messenger-additional-details"
+                       template="Hyva_Checkout::page/messenger.phtml"
+                       before="-"
+                >
+                    <arguments>
+                        <argument name="event_prefix" xsi:type="string">additional:details</argument>
+                    </arguments>
+                </block>
+            </container>
+
+        </referenceBlock>
+    </body>
+</page>

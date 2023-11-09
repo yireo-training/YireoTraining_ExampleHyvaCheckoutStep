@@ -1,0 +1,32 @@
+<?php
+declare(strict_types=1);
+
+use Hyva\Theme\Model\ViewModelRegistry;
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+use YireoTraining\ExampleHyvaCheckoutStep\ViewModel\AdditionalDetails;
+
+/** @var Template $block */
+/** @var ViewModelRegistry $viewModels */
+/** @var AdditionalDetails $additionalDetails */
+/** @var Escaper $escaper */
+
+$additionalDetails = $viewModels->require(AdditionalDetails::class);
+?>
+<div class="p-6">
+    <header class="section-title border-b border-gray-400 pb-1 mb-6">
+        <h2 class="text-gray-800 text-xl font-medium">
+            <?= __('Additional Details') ?>
+        </h2>
+    </header>
+    <?php if ($additionalDetails->getComment() || $additionalDetails->getDiet()): ?>
+            <p>
+                <strong><?= __('Diet') ?></strong>: <?= $additionalDetails->getDiet() ?><br/>
+                <strong><?= __('Comment') ?></strong>: <?= $additionalDetails->getComment() ?><br/>
+            </p>
+    <?php else: ?>
+        <p>
+            <?= $escaper->escapeHtml(__('No additional details set.')) ?>
+        </p>
+    <?php endif ?>
+</div>
