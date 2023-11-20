@@ -4,12 +4,14 @@ declare(strict_types=1);
 namespace YireoTraining\ExampleHyvaCheckoutStep\Magewire\Checkout;
 
 use Magento\Checkout\Model\Session\Proxy as CheckoutSession;
+use Magento\Framework\Filter\FilterManager;
 use Magewirephp\Magewire\Component;
 
 class AdditionalDetails extends Component
 {
     public function __construct(
-        private CheckoutSession $checkoutSession
+        private CheckoutSession $checkoutSession,
+        private FilterManager $filterManager
     ) {
     }
 
@@ -24,6 +26,7 @@ class AdditionalDetails extends Component
 
     public function updatedDiet(?string $value)
     {
+        $value = $this->filterManager->stripTags($value);
         $this->checkoutSession->setDiet((string)$value);
         return (string)$value;
     }
@@ -31,6 +34,7 @@ class AdditionalDetails extends Component
 
     public function updatedComment(?string $value)
     {
+        $value = $this->filterManager->stripTags($value);
         $this->checkoutSession->setComment((string)$value);
         return (string)$value;
     }
