@@ -5,8 +5,13 @@
             <referenceContainer name="checkout.quote-summary.section">
                 <block name="checkout.additional-summary"
                        template="YireoTraining_ExampleHyvaCheckoutStep::checkout/additional-summary.phtml"
-                       after="-"
-                />
+                       after="-">
+                    <arguments>
+                        <argument name="magewire" xsi:type="object">
+                            \YireoTraining\ExampleHyvaCheckoutStep\Magewire\Checkout\AdditionalSummary
+                        </argument>
+                    </arguments>
+                </block>
             </referenceContainer>
     </body>
 </page>

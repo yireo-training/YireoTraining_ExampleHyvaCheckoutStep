@@ -14,7 +14,7 @@ use YireoTraining\ExampleHyvaCheckoutStep\Magewire\Checkout\AdditionalDetails;
             </label>
             <div class="flex items-center gap-4">
                 <textarea class="block w-full form-input grow renderer-text diet"
-                          wire:model="diet"><?= $magewire->diet ?></textarea>
+                          wire:input="updatedDiet($event.target.value)"><?= $magewire->diet ?></textarea>
             </div>
         </div>
     </div>
@@ -26,7 +26,7 @@ use YireoTraining\ExampleHyvaCheckoutStep\Magewire\Checkout\AdditionalDetails;
             </label>
             <div class="flex items-center gap-4">
                 <textarea class="block w-full form-input grow renderer-text comment"
-                          wire:model="comment"><?= $magewire->comment ?></textarea>
+                          wire:model.lazy="comment"><?= $magewire->comment ?></textarea>
             </div>
         </div>
     </div>

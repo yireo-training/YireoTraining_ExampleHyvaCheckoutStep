@@ -6,12 +6,16 @@ namespace YireoTraining\ExampleHyvaCheckoutStep\Magewire\Checkout;
 use Magento\Checkout\Model\Session\Proxy as CheckoutSession;
 use Magewirephp\Magewire\Component;
 
-class AdditionalDetails extends Component
+class AdditionalSummary extends Component
 {
     public function __construct(
         private CheckoutSession $checkoutSession
     ) {
     }
+
+    protected $listeners = [
+        'updateAdditionalDetails' => 'reload'
+    ];
 
     public ?string $diet = '';
     public ?string $comment = '';
@@ -22,19 +26,9 @@ class AdditionalDetails extends Component
         $this->comment = $this->checkoutSession->getComment();
     }
 
-    public function updatedDiet(?string $value)
+    public function reload()
     {
-        $this->checkoutSession->setDiet((string)$value);
-        $this->emit('updateAdditionalDetails');
-        return (string)$value;
-    }
-
-
-    public function updatedComment(?string $value)
-    {
-        $value = strip_tags($value);
-        $this->checkoutSession->setComment((string)$value);
-        $this->emit('updateAdditionalDetails');
-        return (string)$value;
+        $this->diet = $this->checkoutSession->getDiet();
+        $this->comment = $this->checkoutSession->getComment();
     }
 }
